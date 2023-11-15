@@ -20,16 +20,12 @@ function updateValue2(result) {
   if(bool){
     if (!isNaN(parsedResult)) {
     value2.value = parsedResult; 
-  } else {
-    console.log('Conversion result is not a valid number.');
-  }
+  } 
   }
   else{
     if (!isNaN(parsedResult)) {
       value1.value = parsedResult; 
-    } else {
-      console.log('Conversion result is not a valid number.');
-    }
+    } 
   }
   
 }
@@ -75,10 +71,10 @@ function handleCurrencyConversion() {
     if (!isNaN(amount)) {
       let url
       if(bool){
-        url=`http://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}&access_key=${accessKey}`;
+        url=`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}&access_key=${accessKey}`;
       }
       else{
-        url=`http://api.exchangerate.host/convert?from=${to}&to=${from}&amount=${amount}&access_key=${accessKey}`;
+        url=`https://api.exchangerate.host/convert?from=${to}&to=${from}&amount=${amount}&access_key=${accessKey}`;
       }
       fetch(url)
         .then((response) => response.json())
@@ -91,9 +87,7 @@ function handleCurrencyConversion() {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      console.log('Please enter a valid number.');
-    }
+    } 
     
   };
 
