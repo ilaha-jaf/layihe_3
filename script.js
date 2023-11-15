@@ -71,10 +71,10 @@ function handleCurrencyConversion() {
     if (!isNaN(amount)) {
       let url
       if(bool){
-        url=`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}&access_key=${accessKey}`;
+        url=`http://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}&access_key=${accessKey}`;
       }
       else{
-        url=`https://api.exchangerate.host/convert?from=${to}&to=${from}&amount=${amount}&access_key=${accessKey}`;
+        url=`http://api.exchangerate.host/convert?from=${to}&to=${from}&amount=${amount}&access_key=${accessKey}`;
       }
       fetch(url)
         .then((response) => response.json())
