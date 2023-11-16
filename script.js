@@ -71,18 +71,26 @@ function handleCurrencyConversion() {
     if (!isNaN(amount)) {
       let url
       if(bool){
-        url=`http://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}&access_key=${accessKey}`;
+        
+        url=` https://v6.exchangerate-api.com/v6/0eb0385c0d4d881af25085a3/latest/USD?from=${from}`;
       }
       else{
-        url=`http://api.exchangerate.host/convert?from=${to}&to=${from}&amount=${amount}&access_key=${accessKey}`;
+        url=`https://v6.exchangerate-api.com/v6/0eb0385c0d4d881af25085a3/latest/USD?from=${to}`;
       }
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          change1.textContent=`1${from}=${data.info.quote}${to}`;
-          change2.textContent=`1${to}=${(1/data.info.quote).toFixed(6)}${from}`;
-          updateValue2(data.result);
+          change1.textContent=`1${from}=${data.conversion_rates[to]} ${to}`;
+          change2.textContent=`1${to}=${(1/data.conversion_rates[to]).toFixed(4)}${from}`;
+          if(bool){
+            updateValue2((data.conversion_rates[to]*amount).toFixed(4));
+          }
+          else{
+             updateValue2((data.conversion_rates[from]*amount).toFixed(4));
+          }
+          
+         
         })
         .catch((err) => {
           console.log(err);
@@ -169,13 +177,3 @@ value2.addEventListener('input',()=>{
 
 window.onload = rub1.click();
 window.onload = usd2.click();
-
-
-
-
-
-
-
-
-
-
